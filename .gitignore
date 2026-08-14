@@ -1,0 +1,38 @@
+# Data & Outputs
+data/
+04_sfii_outputs/
+05_ml/
+outputs/
+
+# Environment & Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.venv/
+env.bak/
+venv.bak/
+
+# Credentials & Secrets
+credentials.json
+client_secret.json
+*secret*.json
+*token*.json
+*.key
+*.pem
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

@@ -1,0 +1,43 @@
+project:
+  name: "SFII_Nilgiris_Research"
+  version: "1.0.0"
+  study_area: "Nilgiri Biosphere Reserve"
+
+paths:
+  data_raw: "data/raw/"
+  data_processed: "data/processed/"
+  models: "outputs/models/"
+  figures: "outputs/figures/"
+  logs: "outputs/logs/"
+
+machine_learning:
+  target: "sfii_score"
+  cv_folds: 5
+  sequence_length: 84 # 7 years * 12 months
+  
+  tree_models:
+    xgboost:
+      n_estimators: 500
+      learning_rate: 0.05
+      max_depth: 8
+      subsample: 0.8
+    random_forest:
+      n_estimators: 500
+      max_depth: 15
+      
+  sequence_models:
+    lstm:
+      hidden_size: 128
+      num_layers: 2
+      dropout: 0.2
+      batch_size: 64
+      epochs: 50
+      learning_rate: 0.001
+    transformer:
+      d_model: 64
+      nhead: 4
+      num_layers: 3
+      dropout: 0.1
+      batch_size: 64
+      epochs: 50
+      learning_rate: 0.0005

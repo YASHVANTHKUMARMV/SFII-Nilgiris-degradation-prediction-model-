@@ -1,0 +1,29 @@
+project:
+  name: SFII_Feature_Engineering
+  version: 1.0.0
+
+directories:
+  input_geotiffs: "../../data/raw/NDVI_NILGIRS_RESEARCH_DATASET"
+  output_numpy: "../../data/ml_features/numpy"
+  output_parquet: "../../data/ml_features/parquet"
+  output_csv: "../../data/ml_features/csv"
+  logs: "../../logs/feature_engineering"
+  reports: "../../reports/data_quality"
+
+spatial:
+  target_crs: "EPSG:32643"
+  target_resolution: [10, 10]
+  # Assuming bounds of the Nilgiris core zone for alignment
+  target_extent: [76.0, 11.0, 77.0, 11.8] 
+
+features:
+  core_indices: ['NDVI', 'NBR', 'EVI2', 'TCW', 'RedEdge']
+  scaling_method: "z-score" # Options: z-score, min-max
+  temporal_windows:
+    rolling_years: 3
+
+dask:
+  chunk_size:
+    x: 1024
+    y: 1024
+    time: -1

@@ -1,0 +1,26 @@
+project:
+  name: "SFII Geospatial Preprocessing Pipeline"
+  version: "1.0.0"
+
+directories:
+  raw_data: "../../data/raw/NDVI_NILGIRS_RESEARCH_DATASET"
+  processed_data: "../../02_processed/s2_monthly_clean"
+  ml_features: "../../05_ml/features"
+  logs: "../../09_metadata/logs"
+  checkpoints: "../../09_metadata/checkpoints"
+
+spatial:
+  target_crs: "EPSG:32643"
+  target_resolution: [10, -10] # x_res, y_res in meters
+  # Extent: [west, south, east, north] based on SFII blueprint (buffered AOI)
+  target_extent: [76.0, 10.5, 77.5, 12.0]
+
+processing:
+  nodata_value: -9999.0
+  dask_chunk_size: {"x": 1024, "y": 1024, "time": 1}
+  interpolation_method: "linear" # linear, nearest, spline
+  normalization_method: "min-max" # min-max, z-score
+  export_format: "both" # cog, zarr, both
+
+cloud_masking:
+  assume_masked: true # If true, relies on GEE NoData masking. If false, looks for QA band.
